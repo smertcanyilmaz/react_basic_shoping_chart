@@ -1,23 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
+import Item from "./components/Item";
+import Chart from "./components/Chart";
+
+const DUMMY_DATA = [
+  {
+    id: 1,
+    name: "kola",
+    price: 100,
+  },
+  {
+    id: 2,
+    name: "simit",
+    price: 300,
+  },
+  {
+    id: 3,
+    name: "ekmek",
+    price: 200,
+  },
+];
 
 function App() {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    console.log(items);
+  }, [items]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="data-container">
+        {DUMMY_DATA.map((data) => (
+          <Item key={data.id} data={data} items={items} setItems={setItems} />
+        ))}
+      </div>
+
+      {items.length > 0 && (
+        <div className="chart-container">
+          <Chart items={items} setItems={setItems} />
+        </div>
+      )}
     </div>
   );
 }
