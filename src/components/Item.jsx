@@ -32,6 +32,7 @@ const Item = ({ data, items, setItems }) => {
     }
   };
 
+  
   return (
     <div className="item">
       <p>{data.name}</p>
